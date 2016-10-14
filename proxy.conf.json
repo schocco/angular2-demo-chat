@@ -1,0 +1,7 @@
+{
+  "/echo/*": {
+    "target": "http://localhost:9999",
+    "secure": false,
+    "ws": true
+  }
+}

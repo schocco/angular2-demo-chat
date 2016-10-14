@@ -1,0 +1,9 @@
+<div class="message {{ msg.sender }}">
+  <div class="msgMeta">{{ msg.sender }} at {{ msg.ts | date : 'mediumTime' }}
+    <i *ngIf="msg.sender == 'bob' && msg.state==0"> - pending</i>
+    <i *ngIf="msg.sender == 'bob' && msg.state==1"> - sent</i>
+    <i *ngIf="msg.sender == 'bob' && msg.state==2"> - received</i>
+    <i *ngIf="msg.sender == 'bob' && msg.state==3"> - failed</i>
+  </div>
+  <div class="msgText">{{ msg.msg }}</div>
+</div>
