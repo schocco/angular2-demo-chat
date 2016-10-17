@@ -2,4 +2,5 @@
     <chat-msg (onDisplay)="onMessageDisplay($event)" [msg]="msg" *ngFor="let msg of msgs"></chat-msg>
 </div>
 
-<label for="msgInput">Msg:</label><input id="msgInput" type="text" (keydown)="$event.keyCode == 13 ? submitMsg($event.srcElement) : 1"/>
+<label for="msgInput">Msg:</label><input id="msgInput" #msgInput type="text" (keyup.enter)="submitMsg(msgInput.value);msgInput.value=''"/>
+

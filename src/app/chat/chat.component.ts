@@ -26,9 +26,8 @@ export class ChatComponent implements OnInit {
     this.fetchMessages();
   }
 
-  submitMsg(inputElement) {
-    this.chatService.send(inputElement.value, this.name);
-    inputElement.value = '';
+  submitMsg(msg : string) {
+    this.chatService.send(msg, this.name);
   }
 
   private scrollDownMsgDiv() {
