@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { ChatService } from './chat.service';
 import { Message } from './chat.service';
-import {ActivatedRoute, Router, Params} from "@angular/router";
-import {WebsocketService} from "./websokcet.service";
+import {ActivatedRoute, Router, Params} from '@angular/router';
+import {WebsocketService} from './websokcet.service';
 
 @Component({
   selector: 'app-chat',
@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit {
     this.fetchMessages();
   }
 
-  submitMsg(msg : string) {
+  submitMsg(msg: string) {
     this.chatService.send(msg, this.name);
   }
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Observable, Observer, Scheduler, Subject} from "rxjs";
-import {Message} from "./chat.service";
+import {Observable, Observer, Subject} from 'rxjs';
+import {Message} from './chat.service';
 const SockJS = require('sockjs-client');
 
 export enum State {
@@ -21,13 +21,13 @@ export class WebsocketService {
     this.init();
     this.onClose.subscribe(() => {
       this.isConnected = false;
-      console.log("websocket connection lost.");
+      console.log('websocket connection lost.');
       Observable.interval(4000).takeWhile(() => !this.isConnected).subscribe(x => {
-        console.log("reconnect attempt #" + x);
+        console.log('reconnect attempt #' + x);
         // connection object can't be reused. need to re-initialize everything when connection is lost.
         // XXX: we should not expose observables to callers that can be replaced
         this.init();
-      })
+      });
     });
   }
 
@@ -46,13 +46,13 @@ export class WebsocketService {
    *
    * @returns {Observable<Message>} an observable that only emits chat messages (no ACKs)
    */
-  private getMsgObserver() : Observable<Message> {
+  private getMsgObserver(): Observable<Message> {
     return this.onMsg
-      .filter(response => response.type !== "ack")
+      .filter(response => response.type !== 'ack')
       .map(obj => new Message(obj.msg, obj.sender, obj.ts));
   }
 
-  getMsgSubject() : Subject<Message> {
+  getMsgSubject(): Subject<Message> {
     return this.msgSubject;
   }
 
@@ -68,7 +68,7 @@ export class WebsocketService {
       if (this.isConnected) {
         this.sock.send(JSON.stringify(msg));
         this.onMsg
-          .filter(response => response.type == "ack" && response.id == msg.id)
+          .filter(response => response.type === 'ack' && response.id === msg.id)
           .first() // complete on first occurence of ack message
           .subscribe(ack => {
             observer.next(State.RECEIVED);

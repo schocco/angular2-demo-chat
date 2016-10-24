@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Observable, Observer, Subject} from "rxjs";
-import {WebsocketService, State} from "./websokcet.service";
-const SockJS = require('sockjs-client');
+import {Observable, Subject} from 'rxjs';
+import {WebsocketService, State} from './websokcet.service';
 
 export class Message {
 

@@ -5,7 +5,7 @@ import { ChatComponent } from './chat.component';
 
 describe('Component: Chat', () => {
   it('should create an instance', () => {
-    let component = new ChatComponent();
+    let component =  TestBed.createComponent(ChatComponent);
     expect(component).toBeTruthy();
   });
 });
